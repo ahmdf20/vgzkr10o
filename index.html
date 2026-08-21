@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4eddf">
+<title>Crumb — Sourdough starter diary</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="mast">
+<a class="brand" href="#" aria-label="Crumb home"><span class="brandmark">C</span><span>CRUMB<small>starter diary</small></span></a>
+<p class="today" id="today"></p>
+</header>
+<main>
+<section class="status" aria-labelledby="statusTitle">
+<div class="section-head">
+<div><p class="eyebrow">At a glance</p><h1 id="statusTitle">How’s the culture?</h1></div>
+<button class="text-btn" id="manageBtn" type="button">Manage starters <span>↗</span></button>
+</div>
+<div class="starter-strip" id="starterStrip" aria-live="polite"></div>
+</section>
+<div class="workspace">
+<div class="mobile-tabs" aria-label="Diary sections"><button class="active" id="showLog" type="button">Log feeding</button><button id="showDiary" type="button">Feeding diary</button></div>
+<section class="log-panel" aria-labelledby="logTitle">
+<div class="panel-title"><span>01</span><div><p class="eyebrow">Daily ritual</p><h2 id="logTitle">Log a feeding</h2></div></div>
+<form id="feedingForm">
+<div class="field">
+<label for="starter">Starter</label>
+<div class="select-row"><select id="starter" required></select><button class="square-btn" id="quickAdd" type="button" aria-label="Add a starter">+</button></div>
+</div>
+<div class="field">
+<label for="fedAt">Fed on</label>
+<input id="fedAt" type="datetime-local" required>
+</div>
+<div class="field">
+<label for="ratio">Feeding ratio <small>starter : flour : water</small></label>
+<input id="ratio" inputmode="decimal" maxlength="15" value="1:1:1" placeholder="1:1:1" required>
+<p class="hint" id="ratioHint">Use three positive numbers, like 1:2:2.</p>
+</div>
+<fieldset class="field">
+<legend>Activity</legend>
+<div class="activity">
+<label><input type="radio" name="activity" value="sluggish"><span>Sluggish</span></label>
+<label><input type="radio" name="activity" value="normal" checked><span>Normal</span></label>
+<label><input type="radio" name="activity" value="very active"><span>Very active</span></label>
+</div>
+</fieldset>
+<div class="field">
+<label for="note">Notes <small>optional</small></label>
+<textarea id="note" maxlength="180" rows="3" placeholder="Tangy aroma, warm kitchen…"></textarea>
+<span class="count" id="noteCount">0 / 180</span>
+</div>
+<p class="form-message" id="formMessage" role="alert"></p>
+<button class="primary" id="saveBtn" type="submit">Save feeding <span>→</span></button>
+</form>
+</section>
+<section class="diary-panel" aria-labelledby="diaryTitle">
+<div class="diary-head">
+<div class="panel-title"><span>02</span><div><p class="eyebrow">The archive</p><h2 id="diaryTitle">Feeding diary</h2></div></div>
+<label class="filter">Show <select id="filter"><option value="all">All starters</option></select></label>
+</div>
+<div class="feed" id="feed" aria-live="polite"></div>
+</section>
+</div>
+</main>
+<dialog id="starterDialog">
+<form method="dialog" class="dialog-card" id="starterForm">
+<div class="dialog-head"><div><p class="eyebrow">Your collection</p><h2>Starters</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div>
+<div class="starter-list" id="starterList"></div>
+<label class="field">New starter’s nickname
+<span class="add-row"><input id="starterName" maxlength="32" placeholder="e.g. Doughlores"><button class="add-btn" id="addStarter" type="button">Add</button></span>
+</label>
+<p class="dialog-message" id="dialogMessage" role="alert"></p>
+</form>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
